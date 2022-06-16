@@ -59,7 +59,7 @@ public class BookingsIdResource implements InstanceResource<Long, BookingImportD
         }
     }
 
-    @CHECKIN
+    @CHECKIN @Transactional
     public Response signOn(@PathParam("id") long id) {
         if (manageBookings.checkIn(id)) {
             return Response.ok().build();
@@ -68,7 +68,7 @@ public class BookingsIdResource implements InstanceResource<Long, BookingImportD
         }
     }
 
-    @CHECKOUT
+    @CHECKOUT @Transactional
     public Response signOff(@PathParam("id") long id) {
         if (manageBookings.checkOut(id)) {
             return Response.ok().build();
