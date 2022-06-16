@@ -4,8 +4,10 @@ import de.hsos.swe.abetterstart.bookings.entity.Booking;
 import de.hsos.swe.abetterstart.bookings.entity.BookingExportDTO;
 import de.hsos.swe.abetterstart.bookings.entity.BookingImportDTO;
 import de.hsos.swe.abetterstart.bookings.entity.BookingsManagement;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +20,8 @@ public class BookingsRepository implements BookingsManagement {
     private final EntityManager entityManager;
     private final NeuralGuesstimatorClient neuralGuesstimatorClient;
 
-    public BookingsRepository(EntityManager entityManager, NeuralGuesstimatorClient neuralGuesstimatorClient) {
+    @Inject
+    public BookingsRepository(EntityManager entityManager, @RestClient NeuralGuesstimatorClient neuralGuesstimatorClient) {
         this.entityManager = entityManager;
         this.neuralGuesstimatorClient = neuralGuesstimatorClient;
     }
