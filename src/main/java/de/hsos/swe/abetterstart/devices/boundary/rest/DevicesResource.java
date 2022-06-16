@@ -20,7 +20,6 @@ import java.util.Optional;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/api/v2/devices")
-@RolesAllowed({"user", "admin"})
 public class DevicesResource implements ListResource<DeviceImportDTO> {
 
     private final ManageDevices manageDevices;
@@ -38,7 +37,7 @@ public class DevicesResource implements ListResource<DeviceImportDTO> {
         return Response.ok().allow("GET", "POST").build();
     }
 
-    @GET
+    @GET @RolesAllowed({"user", "admin"})
     public Response get(@QueryParam("type") String type) {
         if (type == null || type.isEmpty()) {
             return Response.ok(manageDevices.list()).build();
@@ -47,7 +46,7 @@ public class DevicesResource implements ListResource<DeviceImportDTO> {
         }
     }
 
-    @Override @POST @Transactional
+    @Override @POST @Transactional @RolesAllowed("admin")
     public Response post(DeviceImportDTO deviceImportDTO) {
         Optional<DeviceExportDTO> device = manageDevices.create(deviceImportDTO);
 

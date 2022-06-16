@@ -4,7 +4,6 @@ import de.hsos.swe.abetterstart.bookings.control.ManageBookings;
 import de.hsos.swe.abetterstart.bookings.entity.BookingExportDTO;
 import de.hsos.swe.abetterstart.bookings.entity.BookingImportDTO;
 import de.hsos.swe.abetterstart.common.boundary.rest.InstanceResource;
-import org.jboss.resteasy.annotations.Status;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
