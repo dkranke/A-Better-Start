@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 public class BookingExportDTO extends ExportDTO<Booking> {
 
     private final long id;
-
     private final String user;
     private final long deviceId;
     private final LocalDateTime scheduledStart;

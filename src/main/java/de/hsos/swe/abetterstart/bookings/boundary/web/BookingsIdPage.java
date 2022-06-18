@@ -20,6 +20,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access a specific Booking instance
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)

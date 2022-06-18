@@ -21,6 +21,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access to list and creation of Devices
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)

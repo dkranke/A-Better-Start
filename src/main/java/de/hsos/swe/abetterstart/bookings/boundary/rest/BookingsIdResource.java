@@ -16,6 +16,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access a specific Booking Instance
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -58,6 +61,7 @@ public class BookingsIdResource implements InstanceResource<Long, BookingImportD
         }
     }
 
+    // Custom HTTP Method for checking in a booking
     @CHECKIN @Transactional
     public Response signOn(@PathParam("id") long id) {
         if (manageBookings.checkIn(id)) {
@@ -67,6 +71,7 @@ public class BookingsIdResource implements InstanceResource<Long, BookingImportD
         }
     }
 
+    // Custom HTTP Method for checking out a booking
     @CHECKOUT @Transactional
     public Response signOff(@PathParam("id") long id) {
         if (manageBookings.checkOut(id)) {

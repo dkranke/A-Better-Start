@@ -21,6 +21,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access to list and creation of Bookings
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)
@@ -42,10 +45,14 @@ public class BookingsPage implements ListPage<BookingImportDTO> {
 
     @Override @GET
     public TemplateInstance get() {
+        // Show admins all bookings, instead of their own
         if (securityContext.isUserInRole("admin")) {
             return listTemplate.data("bookings", manageBookings.list("admin"));
-        } else {
-            return listTemplate.data("bookings", manageBookings.list(securityContext.getUserPrincipal().getName()));
+        }
+        // Show users their own bookings
+        else {
+            String username = securityContext.getUserPrincipal().getName();
+            return listTemplate.data("bookings", manageBookings.list(username));
         }
     }
 

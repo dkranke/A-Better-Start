@@ -21,11 +21,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access a specific Users instance
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)
 @Path("/users/{id:\\w+}")
-@RolesAllowed({"admin"})
+@RolesAllowed({"user", "admin"})
 public class UsersIdPage implements InstancePage<String, UserImportDTO> {
 
     private final ManageUsers manageUsers;

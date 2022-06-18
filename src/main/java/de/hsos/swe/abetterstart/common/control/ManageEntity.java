@@ -6,6 +6,10 @@ import de.hsos.swe.abetterstart.common.entity.ImportDTO;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A base usecase interface for managing entities.
+ * It's meant enforce the usage of DTOs for all operations.
+ */
 public interface ManageEntity<Id, IDto extends ImportDTO<?>, EDto extends ExportDTO<?>> {
 
     default List<EDto> list() {

@@ -21,6 +21,9 @@ import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Admin only access to list and creation of Users
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)

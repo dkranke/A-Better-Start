@@ -16,6 +16,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access to list and creation of Bookings
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -40,9 +43,12 @@ public class BookingsResource implements ListResource<BookingImportDTO> {
 
     @Override @GET
     public Response get() {
+        // Show admins all bookings, instead of their own
         if (securityContext.isUserInRole("admin")) {
             return Response.ok(manageBookings.list("admin")).build();
-        } else {
+        }
+        // Show users their own bookings
+        else {
             String username = securityContext.getUserPrincipal().getName();
             return Response.ok(manageBookings.list(username)).build();
         }

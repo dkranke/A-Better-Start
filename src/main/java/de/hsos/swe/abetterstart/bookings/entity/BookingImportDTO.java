@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 public class BookingImportDTO extends ImportDTO<Booking> {
 
     private long deviceId;
-
     private LocalDateTime scheduledStart;
-
     private long intendedDuration;
 
     public long getDeviceId() {

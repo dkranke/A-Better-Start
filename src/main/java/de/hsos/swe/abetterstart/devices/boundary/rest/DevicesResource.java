@@ -16,6 +16,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.Optional;
 
+/**
+ * Access to list and creation of Devices
+ */
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -46,6 +49,7 @@ public class DevicesResource implements ListResource<DeviceImportDTO> {
         }
     }
 
+    // Only admins are allowed to create devices
     @Override @POST @Transactional @RolesAllowed("admin")
     public Response post(DeviceImportDTO deviceImportDTO) {
         Optional<DeviceExportDTO> device = manageDevices.create(deviceImportDTO);
