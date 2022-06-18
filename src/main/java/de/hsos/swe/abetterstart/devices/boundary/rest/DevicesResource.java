@@ -55,7 +55,7 @@ public class DevicesResource implements ListResource<DeviceImportDTO> {
         Optional<DeviceExportDTO> device = manageDevices.create(deviceImportDTO);
 
         if (device.isPresent()) {
-            return Response.ok(device.get()).build();
+            return Response.status(Response.Status.CREATED).entity(device.get()).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }

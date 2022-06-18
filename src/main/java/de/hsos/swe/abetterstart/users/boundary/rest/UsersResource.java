@@ -51,7 +51,7 @@ public class UsersResource implements ListResource<UserImportDTO> {
         Optional<UserExportDTO> user = manageUsers.create(userImportDTO);
 
         if (user.isPresent()) {
-            return Response.ok(user.get()).build();
+            return Response.status(Response.Status.CREATED).entity(user.get()).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }

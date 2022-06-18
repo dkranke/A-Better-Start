@@ -60,7 +60,7 @@ public class BookingsResource implements ListResource<BookingImportDTO> {
         Optional<BookingExportDTO> booking = manageBookings.create(username, bookingImportDTO);
 
         if (booking.isPresent()) {
-            return Response.ok(booking.get()).build();
+            return Response.status(Response.Status.CREATED).entity(booking.get()).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
