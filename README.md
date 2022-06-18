@@ -1,4 +1,4 @@
-# abetterstart Project
+# A-Better-Start Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -68,29 +68,4 @@ If you want to learn more about building native executables, please consult http
 - Security JPA ([guide](https://quarkus.io/guides/security-jpa)): Secure your applications with username/password stored
   in a database via JPA
 - RESTEasy Classic Qute ([guide](https://quarkus.io/guides/qute)): Qute Templating integration for RESTEasy
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-### REST Client
-
-Invoke different services through REST with JSON
-
-[Related guide section...](https://quarkus.io/guides/rest-client)
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
-
-### RESTEasy Qute
-
-Create your web page using Quarkus RESTEasy & Qute
-
-[Related guide section...](https://quarkus.io/guides/qute#type-safe-templates)
+- Flyway ([guide](https://quarkus.io/guides/flyway)): Handle your database schema migrations
