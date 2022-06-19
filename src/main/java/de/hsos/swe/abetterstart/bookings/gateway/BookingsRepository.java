@@ -56,6 +56,7 @@ public class BookingsRepository implements BookingsManagement {
     @Override
     public Optional<BookingExportDTO> create(String username, BookingImportDTO importDTO) {
         Booking booking = importDTO.toEntity();
+        booking.setUser(username);
 
         booking.setExpectedDuration(neuralGuesstimatorClient.getExpectedDuration(new BookingImportDTO(booking)));
         long duration = Math.max(booking.getIntendedDuration(), booking.getExpectedDuration());
