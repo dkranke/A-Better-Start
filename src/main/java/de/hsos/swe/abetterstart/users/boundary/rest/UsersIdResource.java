@@ -22,7 +22,7 @@ import java.util.Optional;
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("/api/v2/users/{id:\\w+}")
+@Path("/api/v2/users/{username:\\w+}")
 @RolesAllowed({"user", "admin"})
 public class UsersIdResource implements InstanceResource<String, UserImportDTO> {
 
@@ -42,12 +42,13 @@ public class UsersIdResource implements InstanceResource<String, UserImportDTO> 
     }
 
     @Override @GET
-    public Response get(@PathParam("id") String id) {
+    public Response get(@PathParam("username") String username) {
         return Response.ok(manageUsers.list()).build();
     }
 
-    @PUT @Transactional
-    public Response post(UserImportDTO userImportDTO) {
+    @Override @PUT @Transactional
+    public Response put(@PathParam("username") String username, UserImportDTO userImportDTO) {
+        userImportDTO.setUsername(username);
         Optional<UserExportDTO> user = manageUsers.update(userImportDTO);
 
         if (user.isPresent()) {
@@ -58,8 +59,8 @@ public class UsersIdResource implements InstanceResource<String, UserImportDTO> 
     }
 
     @Override @DELETE @Transactional
-    public Response delete(@PathParam("id") String id) {
-        if (manageUsers.delete(id)) {
+    public Response delete(@PathParam("username") String username) {
+        if (manageUsers.delete(username)) {
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();

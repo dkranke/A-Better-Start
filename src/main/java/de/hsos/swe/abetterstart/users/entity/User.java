@@ -7,10 +7,7 @@ import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
 
 import javax.enterprise.inject.Vetoed;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -24,7 +21,7 @@ public class User {
     @Roles private String role = "user";
 
     private String name;
-    @ElementCollection private Map<String, Long> deviceExpericence = new HashMap<>();
+    @ElementCollection(fetch = FetchType.EAGER) private Map<String, Long> deviceExpericence = new HashMap<>();
 
     public String getUsername() {
         return username;
