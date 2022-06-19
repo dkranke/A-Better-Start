@@ -20,7 +20,11 @@ public class BookingsRepository implements BookingsManagement {
     private final EntityManager entityManager;
     private final NeuralGuesstimatorClient neuralGuesstimatorClient;
 
-    @Inject
+    @Inject // NeuralGuesstimatorClient Mock-Implementation
+    public BookingsRepository(EntityManager entityManager) {
+        this(entityManager, BookingImportDTO::getIntendedDuration);
+    }
+
     public BookingsRepository(EntityManager entityManager, @RestClient NeuralGuesstimatorClient neuralGuesstimatorClient) {
         this.entityManager = entityManager;
         this.neuralGuesstimatorClient = neuralGuesstimatorClient;
