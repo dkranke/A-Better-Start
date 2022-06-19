@@ -3,11 +3,16 @@ package de.hsos.swe.abetterstart.bookings.entity;
 import de.hsos.swe.abetterstart.common.entity.ImportDTO;
 
 import javax.enterprise.inject.Vetoed;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.ws.rs.FormParam;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Vetoed
 public class BookingImportDTO extends ImportDTO<Booking> {
+
+    @JsonbTransient
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     private long deviceId;
     private LocalDateTime scheduledStart;
@@ -28,7 +33,8 @@ public class BookingImportDTO extends ImportDTO<Booking> {
 
     @FormParam("scheduledStart")
     public void setScheduledStart(String scheduledStart) {
-        this.scheduledStart = LocalDateTime.parse(scheduledStart);
+        scheduledStart = scheduledStart.replace("T", " ").replace("Z","");
+        this.scheduledStart = LocalDateTime.parse(scheduledStart, dateTimeFormatter);
     }
 
     public long getIntendedDuration() {
